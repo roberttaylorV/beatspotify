@@ -2,6 +2,8 @@ let currentAudio = null;
 let volume = 0.35;
 let player1Score = 0;
 let currentTrack = null;
+let guessStartTime = null;
+let guessSubmitted = false;
 
 function stopCurrentSong() {
   if (currentAudio) {
@@ -11,9 +13,6 @@ function stopCurrentSong() {
     currentTrack = null;
   }
 }
-
-
-
 
 function playRandomSong(playlistId) {
   stopCurrentSong();
@@ -46,27 +45,39 @@ function playRandomSong(playlistId) {
       guessInput.value = '';
       resultDisplay.textContent = '';
 
-      // Listen for the guess submission
-      const guessForm = document.getElementById('guessForm');
-      guessForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-        const userGuess = guessInput.value.trim().toLowerCase();
-        const correctAnswer = track.name.toLowerCase();
-        if (userGuess === correctAnswer) {
-          resultDisplay.textContent = `Correct guess! Score: ${player1Score + 100}`;
-          player1Score += 100;
-        } else {
-          resultDisplay.textContent = 'Incorrect guess!';
+      if (!guessSubmitted) {
+        // Listen for the guess submission
+        const guessForm = document.getElementById('guessForm');
+        guessForm.addEventListener('submit', (event) => {
+          event.preventDefault();
+          guessSubmitted = true;
+          const userGuess = guessInput.value.trim().toLowerCase();
+          const correctAnswer = currentTrack.name.toLowerCase();
+          if (userGuess === correctAnswer) {
+            resultDisplay.textContent = `Correct guess! Score: ${player1Score + 100}`;
+            player1Score += 100;
+          } else {
+            resultDisplay.textContent = 'Incorrect guess!';
+            player1Score = 0;
+            guessStartTime = null;
+          }
+
+          // Update the score display on the page
+          const player1ScoreDisplay = document.getElementById('player1Score');
+          player1ScoreDisplay.textContent = player1Score;
+
+          // Show the currently playing song after the guess
+          const currentSong = document.getElementById('currentSong');
+          currentSong.textContent = `Now playing: ${currentTrack.name}`;
+          currentSong.style.display = 'block';
+        });
+      }
+
+      // Set the guess start time when the user focuses on the input field
+      guessInput.addEventListener('focus', () => {
+        if (!guessSubmitted) {
+          guessStartTime = new Date().getTime();
         }
-
-        // Update the score display on the page
-        const player1ScoreDisplay = document.getElementById('player1Score');
-        player1ScoreDisplay.textContent = player1Score;
-
-        // Show the currently playing song after the guess
-        const currentSong = document.getElementById('currentSong');
-        currentSong.textContent = `Now playing: ${track.name}`;
-        currentSong.style.display = 'block';
       });
     })
     .catch(error => console.error('Failed to play random song:', error));
