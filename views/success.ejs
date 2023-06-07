@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Success</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header>
+    <div class="spotify-logo">
+      <img src="/spotify-logo.png" alt="Spotify Logo">
+    </div>
+    <h1>Welcome, <%= displayName %>!</h1>
+  </header>
+
+  <main>
+    <h2>Your Playlists:</h2>
+    <ul class="playlist-list">
+      <% playlists.forEach(playlist => { %>
+        <li>
+          <a href="#" onclick="playRandomSong('<%= playlist.id %>')"><%= playlist.name %></a>
+        </li>
+      <% }); %>
+    </ul>
+
+    <div class="now-playing">
+      <h3>Now Playing:</h3>
+      <div id="currentSong" style="display: none;"></div>
+    </div>
+
+    <div class="progress-bar">
+      <div class="fill"></div>
+    </div>
+
+    <form id="guessForm">
+      <input type="text" id="guessInput" placeholder="Guess the song name">
+      <input type="submit" value="Submit">
+    </form>
+
+    <div id="resultDisplay"></div>
+
+    <div id="scoreDisplay">
+      <h3>Score:</h3>
+      <span id="player1Score">0</span>
+    </div>
+  </main>
+
+  <script src="/script.js"></script>
+  <script src="/guessingLogic.js"></script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+/* styles.css */
+
+/* General Styles */
+body {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #181818;
+  color: #ffffff;
+}
+
+h1, h2, h3 {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+a {
+  color: #1DB954;
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* Header */
+header {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  background-color: #000000;
+}
+
+.spotify-logo img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+/* Main Content */
+main {
+  padding: 20px;
+}
+
+h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.playlist-list li {
+  margin-bottom: 10px;
+}
+
+.now-playing {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 6px;
+  background-color: #535353;
+  margin-bottom: 20px;
+}
+
+.fill {
+  height: 100%;
+  background-color: #1DB954;
+  width: 0%;
+  transition: width 0.5s ease-in-out;
+}
+
+form {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+#guessInput {
+  padding: 8px;
+  font-size: 14px;
+  border-radius: 4px 0 0 4px;
+  border: none;
+  background-color: #ffffff;
+  color: #181818;
+}
+
+button[type="submit"] {
+  padding: 8px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 0 4px 4px 0;
+  border: none;
+  background-color: #1DB954;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+#result {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* Media Queries */
+@media screen and (max-width: 480px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .spotify-logo {
+    margin-bottom: 10px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  main {
+    padding: 10px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  #guessInput {
+    font-size: 12px;
+  }
+
+  button[type="submit"] {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+
+  #result {
+    font-size: 14px;
+  }
+}

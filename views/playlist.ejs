@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Playlist</title>
+  <script src="script.js"></script>
+</head>
+<body>
+  <h1>Playing a random song from the playlist: <%= playlist.name %></h1>
+
+  <% if (tracks.length > 0) { %>
+    <p>Now playing: <%= tracks[randomTrackIndex].name %></p>
+    <button onclick="playRandomSong()">Play Random Song</button>
+  <% } else { %>
+    <p>The selected playlist is empty.</p>
+  <% } %>
+</body>
+</html>
